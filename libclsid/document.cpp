@@ -1,4 +1,5 @@
 #include "document.h"
+#include "exception.h"
 namespace clsid
 {
 	Document::Document()
@@ -12,73 +13,77 @@ namespace clsid
 	}
 	Document & Document::operator=(const Document & source)
 	{
-		// TODO: 在此处插入 return 语句
+		throw NotImplementedException();
 	}
 	Document & Document::operator=(Document && source)
 	{
-		// TODO: 在此处插入 return 语句
+		throw NotImplementedException();
 	}
 	void Document::AddSection(const std::string & section_name)
 	{
+		throw NotImplementedException();
 	}
 	void Document::AddSection(const Section & sec)
 	{
+		throw NotImplementedException();
 	}
 	void Document::RemoveSection(const std::string & section_name)
 	{
 	}
 	void Document::AddOption(const std::string & section_name, const Option & opt)
 	{
+		throw NotImplementedException();
 	}
 	void Document::RemoveOption(const std::string & section_name, const std::string & opt_name)
 	{
+		throw NotImplementedException();
 	}
 	size_t Document::Size() const
 	{
-		return size_t();
+		throw NotImplementedException();
 	}
 	Section & Document::operator[](size_t index)
 	{
-		// TODO: 在此处插入 return 语句
+		throw NotImplementedException();
 	}
 	const Section & Document::operator[](size_t index) const
 	{
-		// TODO: 在此处插入 return 语句
+		throw NotImplementedException();
 	}
 	Section & Document::operator[](const std::string & section_name)
 	{
-		// TODO: 在此处插入 return 语句
+		throw NotImplementedException();
 	}
 	const Section & Document::operator[](const std::string & section_name) const
 	{
-		// TODO: 在此处插入 return 语句
+		throw NotImplementedException();
 	}
 	bool Document::Contains(const std::string & section_name) const
 	{
-		return false;
+		throw NotImplementedException();
 	}
 	iterator Document::begin()
 	{
-		return iterator();
+		throw NotImplementedException();
 	}
 	iterator Document::end()
 	{
-		return iterator();
+		throw NotImplementedException();
 	}
 	iterator Document::begin() const
 	{
-		return iterator();
+		throw NotImplementedException();
 	}
 	iterator Document::end() const
 	{
-		return iterator();
+		throw NotImplementedException(); 
 	}
 	const_iterator Document::cbegin() const
 	{
-		return const_iterator();
+		throw NotImplementedException();
 	}
 	const_iterator Document::cend() const
 	{
-		return const_iterator();
+		throw NotImplementedException();
 	}
 }

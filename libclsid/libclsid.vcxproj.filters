@@ -30,6 +30,9 @@
     <ClInclude Include="iterator.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="exception.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="document.cpp">
