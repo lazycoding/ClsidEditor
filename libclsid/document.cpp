@@ -1,5 +1,7 @@
 #include "document.h"
 #include "exception.h"
+#include "iterator.h"
+
 namespace clsid
 {
 	Document::Document()
@@ -62,27 +64,27 @@ namespace clsid
 	{
 		throw NotImplementedException();
 	}
-	iterator Document::begin()
+	Document::iterator Document::begin()
 	{
 		throw NotImplementedException();
 	}
-	iterator Document::end()
+	Document::iterator Document::end()
 	{
 		throw NotImplementedException();
 	}
-	iterator Document::begin() const
+	Document::iterator Document::begin() const
 	{
 		throw NotImplementedException();
 	}
-	iterator Document::end() const
+	Document::iterator Document::end() const
 	{
 		throw NotImplementedException(); 
 	}
-	const_iterator Document::cbegin() const
+	Document::const_iterator Document::cbegin() const
 	{
 		throw NotImplementedException();
 	}
-	const_iterator Document::cend() const
+	Document::const_iterator Document::cend() const
 	{
 		throw NotImplementedException();
 	}
