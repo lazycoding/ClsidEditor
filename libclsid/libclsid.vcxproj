@@ -135,11 +135,13 @@
     <ClInclude Include="exception.h" />
     <ClInclude Include="iterator.h" />
     <ClInclude Include="option.h" />
+    <ClInclude Include="reader.h" />
     <ClInclude Include="section.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="document.cpp" />
     <ClCompile Include="option.cpp" />
+    <ClCompile Include="reader.cpp" />
     <ClCompile Include="section.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,6 +1,11 @@
 #include "document.h"
 #include "exception.h"
 #include "iterator.h"
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include "reader.h"
+using namespace std;
 
 namespace clsid
 {
@@ -9,21 +14,59 @@ namespace clsid
 	}
 	Document::Document(const Document & source)
 	{
+		secs_.resize(source.secs_.size());
+		for (auto& sec : source.secs_)
+		{
+			secs_.push_back(make_shared<Section>(*sec));
+		}
+
+		for (auto& sec : source.secs_)
+		{
+			secs_map_.insert(make_pair(sec->Name(), sec));
+		}
 	}
 	Document::Document(Document && source)
 	{
+		operator=(move(source));
 	}
 	Document & Document::operator=(const Document & source)
 	{
-		throw NotImplementedException();
+		if (this != &source)
+		{
+			Document d(source);
+			std::swap(*this, d);
+		}
+		return *this;
 	}
 	Document & Document::operator=(Document && source)
 	{
-		throw NotImplementedException();
+		if (this != &source)
+		{
+			secs_ = move(source.secs_);
+			secs_map_ = move(source.secs_map_);
+		}
+		return *this;
 	}
 	bool Document::Load(const char * filepath)
 	{
-		throw NotImplementedException();
+		std::ifstream in(filepath);
+		if (in)
+		{
+			Reader rd(in, *this);
+			return rd.Parse();
+		}		
+		return false;
+	}
+	bool Document::LoadString(const char * clsidstr)
+	{
+		//std::isstream in(filepath);
+		std::istringstream in(clsidstr);
+		if (in)
+		{
+			Reader rd(in, *this);
+			return rd.Parse();
+		}
+		return false;
 	}
 	void Document::AddSection(const std::string & section_name)
 	{
@@ -91,5 +134,17 @@ namespace clsid
 	Document::const_iterator Document::cend() const
 	{
 		throw NotImplementedException();
+	}
+	bool Document::operator==(const Document & other) const
+	{
+		return equal(secs_.begin(), secs_.end(), other.secs_.begin(),
+			[](const shared_ptr<Section>& first, const shared_ptr<Section>& second){
+			return *first == *second;
+		});
+
+	}
+	bool Document::operator!=(const Document & other) const
+	{
+		return !this->operator==(other);
 	}
 }

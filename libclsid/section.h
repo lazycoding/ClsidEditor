@@ -2,6 +2,7 @@
 #define CLSID_SECTION_H__
 #include <vector>
 #include <memory>
+#include <map>
 #include <string>
 #include <iterator>
 #include "option.h"
@@ -23,7 +24,7 @@ namespace clsid
 		
 		Section& operator=(Section&& source);
 		
-		~Section();
+		~Section()=default;
 
 		const std::string& Name() const;
 
@@ -34,6 +35,8 @@ namespace clsid
 		template<typename ValueType>
 		void AddOption(const std::string& opt_name, ValueType val);
 
+		friend class SectionIterator<Section>;
+		friend class SectionIterator<const Section>;
 		using iterator = SectionIterator<Section>;
 		using const_iterator = SectionIterator<const Section>;
 
@@ -49,15 +52,21 @@ namespace clsid
 
 		const_iterator cend() const;
 
+		bool operator==(const Section& other);
+
+		bool operator!=(const Section& other);
+
     private:
-        std::vector<std::unique_ptr<Option>> opts_;
+        std::vector<std::shared_ptr<Option>> opts_;
+		std::map<std::string, std::shared_ptr<Option>> opts_map_;
+		std::string name_;
     };    
 
 	template<typename Element> 
 	class SectionIterator:public std::iterator<std::random_access_iterator_tag, Element>
 	{
 
-	};
+	};	
 }
 
 #endif //CLSID_SECTION_H__

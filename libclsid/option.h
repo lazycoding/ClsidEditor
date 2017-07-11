@@ -23,9 +23,13 @@ namespace clsid
 
 		template<typename ValueType> ValueType GetValue() const;
 		
+		bool operator==(const Option& other);
 		
+		bool operator != (const Option& other);
+
+		const std::string& Name() const;
     private:
-        std::string key_;
+        std::string name_;
         std::string raw_;        
     };    
 }

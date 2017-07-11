@@ -31,6 +31,8 @@ namespace clsid
 
 		bool Load(const char* filepath);
 
+		bool LoadString(const char* clsidstr);
+
         void AddSection(const std::string& section_name);
         
         void AddSection(const Section& sec);
@@ -67,10 +69,14 @@ namespace clsid
         const_iterator cbegin() const;
         
         const_iterator cend() const;
+
+		bool operator==(const Document& other) const;
         
+		bool operator!=(const Document& other) const;
+
     private:
-        std::vector<Section> secs_;        
-		std::map<std::string, Section> secs_map_;
+        std::vector<std::shared_ptr<Section>> secs_;        
+		std::map<std::string, std::shared_ptr<Section>> secs_map_;
     };
 
 	template<typename ValueType>
