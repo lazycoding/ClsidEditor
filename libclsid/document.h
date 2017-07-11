@@ -28,7 +28,9 @@ namespace clsid
         Document& operator=(const Document& source);
         
         Document& operator=(Document&& source);
-        
+
+		bool Load(const char* filepath);
+
         void AddSection(const std::string& section_name);
         
         void AddSection(const Section& sec);
@@ -36,10 +38,9 @@ namespace clsid
         void RemoveSection(const std::string& section_name);
         
         void AddOption(const std::string& section_name, const Option& opt);
-
-        //TODO:
-        //template<typename ValueType>
-        //void AddOption(const std::string& section_name, const std::string& opt_name, ValueType value);        
+        
+        template<typename ValueType>
+        void AddOption(const std::string& section_name, const std::string& opt_name, ValueType value);        
         
         void RemoveOption(const std::string& section_name, const std::string& opt_name);
         
@@ -71,7 +72,20 @@ namespace clsid
         std::vector<Section> secs_;        
 		std::map<std::string, Section> secs_map_;
     };
+
+	template<typename ValueType>
+	void Document::AddOption(const std::string & section_name, const std::string & opt_name, ValueType value)
+	{
+		throw NotImplementedException();
+	}
+
+	template<typename Element>
+	class DocumentIterator : public std::iterator<std::random_access_iterator_tag, Element>
+	{
+
+	};
 }
+
 
 
 #endif //CLSID_DOCUMENT_H__

@@ -139,6 +139,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="document.cpp" />
+    <ClCompile Include="option.cpp" />
+    <ClCompile Include="section.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

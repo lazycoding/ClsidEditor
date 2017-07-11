@@ -38,5 +38,11 @@
     <ClCompile Include="document.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="section.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="option.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

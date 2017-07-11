@@ -12,6 +12,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unit_test", "unit_test", "{366B0185-45B7-448B-9D4B-5A6892AE0C9E}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		CppUnitLite\CppUnitLite.vcxitems*{5f71fcad-0604-4585-a127-72c57baf5f6c}*SharedItemsImports = 4
+		CppUnitLite\CppUnitLite.vcxitems*{6dafc42d-e83d-44a8-86aa-a0d8b67fd29c}*SharedItemsImports = 9
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86

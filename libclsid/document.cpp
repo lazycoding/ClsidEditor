@@ -21,6 +21,10 @@ namespace clsid
 	{
 		throw NotImplementedException();
 	}
+	bool Document::Load(const char * filepath)
+	{
+		throw NotImplementedException();
+	}
 	void Document::AddSection(const std::string & section_name)
 	{
 		throw NotImplementedException();
