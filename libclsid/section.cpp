@@ -24,12 +24,12 @@ namespace clsid
 	}
 	Section & Section::operator=(const Section & source)
 	{
-		if (this != &source)
-		{
-			Section new_sec(source);
-			std::swap(*this, new_sec);
-		}
-		return *this;
+	if (this != &source)
+	{
+		Section new_sec(source);
+		std::swap(*this, new_sec);
+	}
+	return *this;
 	}
 	Section::Section(Section && source)
 	{
@@ -37,7 +37,7 @@ namespace clsid
 	}
 	Section & Section::operator=(Section && source)
 	{
-		if(this!=&source)
+		if (this != &source)
 		{
 			opts_ = move(source.opts_);
 			opts_map_ = move(source.opts_map_);
@@ -52,7 +52,7 @@ namespace clsid
 	void Section::AddOption(const Option & opt)
 	{
 		auto find = opts_map_.find(opt.Name());
-		if (find==opts_map_.end())
+		if (find == opts_map_.end())
 		{
 			auto toadd = make_shared<Option>(opt);
 			opts_map_.insert(make_pair(opt.Name(), toadd));
@@ -63,7 +63,7 @@ namespace clsid
 	{
 		auto find = opts_map_.find(opt_name);
 		if (find != opts_map_.end())
-		{			
+		{
 			opts_map_.erase(opt_name);
 			opts_.erase(remove_if(opts_.begin(), opts_.end(), [&](const shared_ptr<Option>& opt) {
 				return opt->Name() == opt_name;
@@ -118,5 +118,51 @@ namespace clsid
 	bool Section::Contains(const std::string& opt_name) const
 	{
 		return opts_map_.find(opt_name) != opts_map_.end();
+	}
+
+	Option& Section::operator[](int index)
+	{
+		if (0 <= index && index < opts_.size())
+		{
+			return *opts_.at(index);
+		}
+		throw out_of_range("out of range");
+	}
+
+	const Option& Section::operator[](int index) const
+	{
+		if (0 <= index && index < opts_.size())
+		{
+			return *opts_.at(index);
+		}
+		throw out_of_range("out of range");
+	}
+
+	Option& Section::operator[](const std::string& opt_name)
+	{
+		shared_ptr<Option> result;
+		try
+		{
+			result = opts_map_.at(opt_name);
+		}
+		catch (const std::out_of_range&)
+		{
+			throw out_of_range("not found");
+		}
+		return *result;
+	}
+
+	const Option& Section::operator[](const std::string& opt_name)const
+	{
+		shared_ptr<Option> result;
+		try
+		{
+			result = opts_map_.at(opt_name);
+		}
+		catch (const std::out_of_range&)
+		{
+			throw out_of_range("not found");
+		}
+		return *result;
 	}
 }

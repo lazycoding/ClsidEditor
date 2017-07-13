@@ -30,3 +30,37 @@ TEST(section, add_remove_option)
 
 	CHECK_LONGS_EQUAL(4, s.Size());	
 }
+
+TEST(section, get_option)
+{
+	Section s("test");
+	s.AddOption(Option("boolean", "true"));
+	s.AddOption(Option("string", "xxxxx"));
+	s.AddOption(Option("number", "15"));
+	s.AddOption(Option("array", "{\"a1\",\"a2\"}"));
+	s.AddOption(Option("xmlprop", "<x=\"y\", z=\"a\">"));
+
+	Option opt1 = s[0];
+	CHECK(opt1.Name() == "boolean");
+	Option opt2 = s["array"];
+	CHECK(opt2.Name() == "array");
+}
+
+
+TEST(section, iterator)
+{
+	Section s("test");
+	s.AddOption(Option("boolean", "true"));
+	s.AddOption(Option("string", "xxxxx"));
+	s.AddOption(Option("number", "15"));
+	s.AddOption(Option("array", "{\"a1\",\"a2\"}"));
+	s.AddOption(Option("xmlprop", "<x=\"y\", z=\"a\">"));
+
+	Option o1 = *s.begin();
+	CHECK(o1.Name() == "boolean");
+
+	for (auto& opt : s)
+	{
+		CHECK(!opt.Name().empty());
+	}
+}

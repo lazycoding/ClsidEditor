@@ -43,10 +43,18 @@ namespace clsid
 
 		bool Contains(const std::string& opt_name) const;
 
-		friend class SectionIterator<Section>;
-		friend class SectionIterator<const Section>;
-		using iterator = SectionIterator<Section>;
-		using const_iterator = SectionIterator<const Section>;
+		Option& operator[](int index);
+
+		const Option& operator[](int index) const;
+
+		Option& operator[](const std::string& opt_name);
+
+		const Option& operator[](const std::string& opt_name)const;
+
+		friend class SectionIterator<Option>;
+		friend class SectionIterator<const Option>;
+		using iterator = SectionIterator<Option>;
+		using const_iterator = SectionIterator<const Option>;
 
 		iterator begin();
 
@@ -87,7 +95,7 @@ namespace clsid
 
 		SectionIterator& operator=(SectionIterator&&) = default;
 
-		SectionIterator(Section& sect, size_t position):sect_(sect_),position_(position)
+		SectionIterator(Section& sect, size_t position):sect_(sect),position_(position)
 		{
 
 		}
