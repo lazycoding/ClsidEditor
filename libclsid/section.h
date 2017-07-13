@@ -1,11 +1,13 @@
 #ifndef CLSID_SECTION_H__
 #define CLSID_SECTION_H__
+#include "option.h"
 #include <vector>
 #include <memory>
 #include <map>
 #include <string>
 #include <iterator>
-#include "option.h"
+#include <algorithm>
+using namespace std;
 
 namespace clsid
 {
@@ -14,7 +16,9 @@ namespace clsid
     class Section
     {
 	public:
-		Section();
+		Section()=delete;
+
+		Section(const std::string& name);
 
 		Section(const Section& source);
 		
@@ -35,6 +39,10 @@ namespace clsid
 		template<typename ValueType>
 		void AddOption(const std::string& opt_name, ValueType val);
 
+		size_t Size() const;
+
+		bool Contains(const std::string& opt_name) const;
+
 		friend class SectionIterator<Section>;
 		friend class SectionIterator<const Section>;
 		using iterator = SectionIterator<Section>;
@@ -44,9 +52,9 @@ namespace clsid
 
 		iterator end();
 
-		iterator begin() const;
+		const_iterator begin() const;
 
-		iterator end() const;
+		const_iterator end() const;
 
 		const_iterator cbegin() const;
 
@@ -65,7 +73,70 @@ namespace clsid
 	template<typename Element> 
 	class SectionIterator:public std::iterator<std::random_access_iterator_tag, Element>
 	{
+	public:
+		using typename std::iterator<std::random_access_iterator_tag, Element>::reference;
+		using typename std::iterator<std::random_access_iterator_tag, Element>::pointer;
 
+		SectionIterator() = delete;
+
+		SectionIterator(const SectionIterator&) = default;
+
+		SectionIterator(SectionIterator&& source) = default;
+
+		SectionIterator& operator=(const SectionIterator&) = default;
+
+		SectionIterator& operator=(SectionIterator&&) = default;
+
+		SectionIterator(Section& sect, size_t position):sect_(sect_),position_(position)
+		{
+
+		}
+
+		SectionIterator(Section& sect) :SectionIterator(sect, 0) 
+		{
+
+		}
+
+		bool operator==(const SectionIterator& other) const
+		{
+			return &sect_ == &other.sect_ && position_ == other.position_;
+		}
+
+		bool operator!=(const SectionIterator& other) const
+		{
+			return !(*this == other);
+		}
+		
+		bool operator<(const SectionIterator& other) const
+		{
+			return position_ < other.position_;
+		}
+
+		reference operator*()
+		{
+			return *sect_.opts_.at(position_);
+		}
+
+		pointer operator->()
+		{
+			return &(operator*());
+		}
+
+		SectionIterator& operator++() //prefix
+		{
+			++position_;
+			return *this;
+		}
+
+		SectionIterator operator++(int)//suffix
+		{
+			SectionIterator old(*this);
+			++position_;
+			return old;
+		}
+	private:
+		Section& sect_;
+		size_t position_;
 	};	
 }
 

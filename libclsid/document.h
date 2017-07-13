@@ -62,9 +62,9 @@ namespace clsid
         
         iterator end();
         
-        iterator begin() const;
+        const_iterator begin() const;
         
-        iterator end() const;
+		const_iterator end() const;
         
         const_iterator cbegin() const;
         
@@ -88,7 +88,69 @@ namespace clsid
 	template<typename Element>
 	class DocumentIterator : public std::iterator<std::random_access_iterator_tag, Element>
 	{
+	public:
+		using typename std::iterator<std::random_access_iterator_tag, Element>::reference;
+		using typename std::iterator<std::random_access_iterator_tag, Element>::pointer;
 
+		DocumentIterator() = delete;
+
+		DocumentIterator(const DocumentIterator& doc) = default;
+
+		DocumentIterator(DocumentIterator&& doc) = default;
+
+		DocumentIterator& operator=(const DocumentIterator& doc) = default;
+
+		DocumentIterator& operator=(DocumentIterator&& doc) = default;
+
+		DocumentIterator(Document& source) :DocumentIterator(source, 0) 
+		{
+		}
+
+		DocumentIterator(Document& source, size_t position):container_(source),position_(position)
+		{
+		}
+
+		DocumentIterator& operator++() //prefix
+		{
+			++position_;
+			return *this;
+		}
+
+		DocumentIterator operator++(int)//suffix
+		{
+			DocumentIterator old(*this);
+			++position_;
+			return old;
+		}
+
+		bool operator!=(const DocumentIterator& other) const
+		{
+			return !(*this == other);
+		}
+
+		bool operator==(const DocumentIterator& other) const
+		{
+			return &container_ == &other.container_ && position_ == other.position_;
+		}
+
+		bool operator<(const DocumentIterator& other) const
+		{
+			return position_ < other.position_;
+		}
+
+		reference operator*()
+		{
+			return *container_.secs_.at(position_);
+		}
+
+		pointer operator->()
+		{
+			return &(operator*());
+		}
+
+	private:
+		Document& container_;
+		size_t position_;
 	};
 }
 

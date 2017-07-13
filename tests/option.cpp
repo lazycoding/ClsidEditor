@@ -17,3 +17,4 @@ TEST(option, ctor_and_copy_assignment)
 	Option opt5=std::move(opt1);
 	CHECK(opt1 == opt5);
 }
+
