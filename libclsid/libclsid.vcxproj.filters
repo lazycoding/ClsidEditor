@@ -36,6 +36,18 @@
     <ClInclude Include="reader.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="string_utils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlProp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="StringArray.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="types.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="document.cpp">
@@ -48,6 +60,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="reader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="string_utils.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlProp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="StringArray.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

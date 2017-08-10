@@ -48,26 +48,7 @@ namespace clsid
 		}
 		return *this;
 	}
-	bool Document::Load(const char * filepath)
-	{
-		std::ifstream in(filepath);
-		if (in)
-		{
-			Reader rd(in, *this);
-			return rd.Parse();
-		}		
-		return false;
-	}
-	bool Document::LoadString(const char * clsidstr)
-	{
-		std::istringstream in(clsidstr);
-		if (in)
-		{
-			Reader rd(in, *this);
-			return rd.Parse();
-		}
-		return false;
-	}
+
 	void Document::AddSection(const std::string & section_name)
 	{
 		Section sec(section_name);

@@ -29,10 +29,6 @@ namespace clsid
         
         Document& operator=(Document&& source);
 
-		bool Load(const char* filepath);
-
-		bool LoadString(const char* clsidstr);
-
         void AddSection(const std::string& section_name);
         
         void AddSection(const Section& sec);

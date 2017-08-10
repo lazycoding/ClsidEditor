@@ -41,5 +41,11 @@
     <ClCompile Include="section.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="string_utils.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="reader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

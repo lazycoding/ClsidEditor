@@ -73,8 +73,7 @@
   <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -137,12 +136,19 @@
     <ClInclude Include="option.h" />
     <ClInclude Include="reader.h" />
     <ClInclude Include="section.h" />
+    <ClInclude Include="StringArray.h" />
+    <ClInclude Include="string_utils.h" />
+    <ClInclude Include="types.h" />
+    <ClInclude Include="XmlProp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="document.cpp" />
     <ClCompile Include="option.cpp" />
     <ClCompile Include="reader.cpp" />
     <ClCompile Include="section.cpp" />
+    <ClCompile Include="StringArray.cpp" />
+    <ClCompile Include="string_utils.cpp" />
+    <ClCompile Include="XmlProp.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
